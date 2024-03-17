@@ -1,5 +1,7 @@
 import React from "react";
 
-export const LogInPage = () => {
-  return <div>I'm a LogIn Page</div>;
+const LogInPage = () => {
+  return <div>I'm the LogInPage</div>;
 };
+
+export default LogInPage;
