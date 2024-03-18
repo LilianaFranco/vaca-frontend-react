@@ -11,13 +11,30 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const settings = ["Profile", "Account", "Logout"];
+
+function MenuLinks() {
+  return (
+    <React.Fragment>
+      <Link to="/friends">
+        <Button sx={{ my: 1, mx: 4, color: "white" }}>Amigos</Button>
+      </Link>
+      <Link to="/expenses">
+        <Button sx={{ my: 1, mx: 4, color: "white" }}>Gastos</Button>
+      </Link>
+      <Link to="/groups">
+        <Button sx={{ my: 1, mx: 4, color: "white" }}>Grupos</Button>
+      </Link>
+    </React.Fragment>
+  );
+}
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const isAuthorized = true;
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -39,64 +56,13 @@ function NavBar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* Menu in Mobile */}
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Link
-                  to="/friends"
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  Amigos
-                </Link>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Link
-                  to="/expenses"
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  Gastos
-                </Link>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Link
-                  to="/groups"
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  Grupos
-                </Link>
-              </MenuItem>
-            </Menu>
-          </Box>
 
           {/* Tittle */}
-          <Avatar alt="logo" src="src/assets/logo.png" />
+          <Avatar
+            alt="logo"
+            src="src/assets/Logo.svg"
+            sx={{ width: "unset", borderRadius: "unset" }}
+          />
           <Typography
             variant="h5"
             noWrap
@@ -115,50 +81,59 @@ function NavBar() {
             Vaca
           </Typography>
 
-          {/* Menu in Web */}
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Link to="/friends">
-              <Button sx={{ my: 1, mx: 4, color: "white" }}>Amigos</Button>
-            </Link>
-            <Link to="/expenses">
-              <Button sx={{ my: 1, mx: 4, color: "white" }}>Gastos</Button>
-            </Link>
-            <Link to="/groups">
-              <Button sx={{ my: 1, mx: 4, color: "white" }}>Grupos</Button>
-            </Link>
-          </Box>
+          {isAuthorized && (
+            <React.Fragment>
+              {/* Menu in Web */}
+              <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+                <MenuLinks />
+              </Box>
 
-          {/* Profile menu for settings in Mobile and Web*/}
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+              {/* Profile menu for settings in Mobile and Web*/}
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="" src="" />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map((setting) => (
+                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Box>
+            </React.Fragment>
+          )}
         </Toolbar>
+
+        {/* Mobile menu */}
+        {isAuthorized && (
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "flex", md: "none" },
+              justifyContent: "space-between",
+            }}
+          >
+            <MenuLinks />
+          </Box>
+        )}
       </Container>
     </AppBar>
   );
