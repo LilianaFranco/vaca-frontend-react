@@ -14,6 +14,7 @@ const RoutesFile = () => {
       <Route path="/groups" element={<GroupsPage />} />
       <Route path="/friends" element={<FriendsPage />} />
       <Route path="/expenses" element={<ExpensesPage />} />
+      <Route path="*" element={<h1>Not found</h1>} />
     </Routes>
   );
 };
