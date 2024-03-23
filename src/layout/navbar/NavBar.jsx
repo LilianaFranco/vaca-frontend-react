@@ -5,13 +5,13 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
+import { Margin } from "@mui/icons-material";
 
 const settings = ["Profile", "Account", "Logout"];
 
@@ -43,21 +43,15 @@ function NavBar() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ padding: "10px" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* Menu in Mobile */}
-
-          {/* Tittle */}
           <Avatar
             alt="logo"
             src="src/assets/Logo.svg"
