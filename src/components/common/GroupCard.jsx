@@ -7,6 +7,7 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import React from "react";
 
 const GroupCard = ({ group }) => {
@@ -27,7 +28,9 @@ const GroupCard = ({ group }) => {
       />
       <CardContent
         sx={{
-          display: "block",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
         }}
       >
         <CardHeader title={group.name} sx={{ padding: "0px 8px" }} />
@@ -38,7 +41,7 @@ const GroupCard = ({ group }) => {
           <Button size="small" variant="contained">
             EDITAR
           </Button>
-          <Button size="small" variant="contained">
+          <Button size="small" variant="contained" startIcon={<DeleteIcon />}>
             ELIMINAR
           </Button>
         </CardActions>
