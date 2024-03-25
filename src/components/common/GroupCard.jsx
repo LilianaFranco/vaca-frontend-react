@@ -21,12 +21,16 @@ const GroupCard = ({ group }) => {
           width: 120,
           alignSelf: "center",
           margin: 2,
-          padding: 2,
+          padding: 3,
           backgroundColor: group.color,
         }}
       />
-      <CardContent>
-        <CardHeader title={group.name} sx={{ padding: "8px" }} />
+      <CardContent
+        sx={{
+          display: "block",
+        }}
+      >
+        <CardHeader title={group.name} sx={{ padding: "0px 8px" }} />
         <Typography sx={{ padding: "8px" }}>
           {group.balanceStatus}: ${group.balanceValue} COP
         </Typography>
