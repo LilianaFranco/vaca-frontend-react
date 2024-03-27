@@ -19,13 +19,13 @@ function MenuLinks() {
   return (
     <React.Fragment>
       <Link to="/friends">
-        <Button sx={{ my: 1, mx: 4, color: "white" }}>Amigos</Button>
+        <Button sx={{ m: "8px 4px", color: "white" }}>Amigos</Button>
       </Link>
       <Link to="/expenses">
-        <Button sx={{ my: 1, mx: 4, color: "white" }}>Gastos</Button>
+        <Button sx={{ m: "8px 4px", color: "white" }}>Gastos</Button>
       </Link>
       <Link to="/groups">
-        <Button sx={{ my: 1, mx: 4, color: "white" }}>Grupos</Button>
+        <Button sx={{ m: "8px 4px", color: "white" }}>Grupos</Button>
       </Link>
     </React.Fragment>
   );
@@ -48,7 +48,7 @@ function NavBar() {
   };
 
   return (
-    <AppBar position="static" sx={{ padding: "10px" }}>
+    <AppBar position="static" sx={{ padding: "4px" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* Menu in Mobile */}
@@ -58,7 +58,7 @@ function NavBar() {
             sx={{ width: "unset", borderRadius: "unset" }}
           />
           <Typography
-            variant="h5"
+            variant="h6"
             noWrap
             component="a"
             href="#app-bar-with-responsive-menu"
@@ -67,7 +67,7 @@ function NavBar() {
               display: { xs: "flex", md: "flex" },
               flexGrow: 1,
               fontWeight: 700,
-              letterSpacing: ".2rem",
+              letterSpacing: ".1rem",
               color: "inherit",
               textDecoration: "none",
             }}
@@ -85,7 +85,7 @@ function NavBar() {
               {/* Profile menu for settings in Mobile and Web*/}
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <IconButton onClick={handleOpenUserMenu}>
                     <Avatar alt="" src="" />
                   </IconButton>
                 </Tooltip>

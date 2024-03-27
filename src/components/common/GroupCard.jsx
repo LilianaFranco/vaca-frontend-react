@@ -5,20 +5,23 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
+  Grid,
   Typography,
 } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import React from "react";
 
 const GroupCard = ({ group }) => {
-  console.log(group);
   return (
-    <Card sx={{ display: "flex", margin: "15px" }}>
+    <Card sx={{ display: "flex", margin: "8px 15px" }}>
       <CardMedia
         component="img"
         image="src/assets/Logo.svg"
         alt="Vaca Logo"
         sx={{
-          width: 120,
+          height: 50,
+          width: 50,
           alignSelf: "center",
           margin: 2,
           padding: 3,
@@ -30,15 +33,19 @@ const GroupCard = ({ group }) => {
           display: "block",
         }}
       >
-        <CardHeader title={group.name} sx={{ padding: "0px 8px" }} />
-        <Typography sx={{ padding: "8px" }}>
-          {group.balanceStatus}: ${group.balanceValue} COP
+        <Typography variant="h6" gutterBottom>
+          {group.name}
         </Typography>
-        <CardActions>
-          <Button size="small" variant="contained">
+        <Typography variant="body1">
+          {group.groupStatus}: ${group.balanceValue} COP
+        </Typography>
+        <CardActions
+          sx={{ justifyContent: "space-between", padding: "10px 0px" }}
+        >
+          <Button size="small" variant="contained" startIcon={<EditIcon />}>
             EDITAR
           </Button>
-          <Button size="small" variant="contained">
+          <Button size="small" variant="contained" startIcon={<DeleteIcon />}>
             ELIMINAR
           </Button>
         </CardActions>
