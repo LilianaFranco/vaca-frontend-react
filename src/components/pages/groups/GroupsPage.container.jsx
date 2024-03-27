@@ -7,7 +7,7 @@ const GroupsPageContainer = () => {
       id: 1,
       name: "Group #1",
       color: "black",
-      balanceStatus: "Debo",
+      groupStatus: "Debo",
       balanceValue: "20000",
     },
 
@@ -15,12 +15,26 @@ const GroupsPageContainer = () => {
       id: 2,
       name: "Group #2",
       color: "red",
-      balanceStatus: "Debo",
+      groupStatus: "Debo",
       balanceValue: "3000",
+    },
+    {
+      id: 3,
+      name: "Group #3",
+      color: "red",
+      groupStatus: "Me deben",
+      balanceValue: "3000",
+    },
+
+    {
+      id: 4,
+      name: "Group #4",
+      color: "red",
+      groupStatus: "Me deben",
+      balanceValue: "6000",
     },
   ];
 
-  console.log(groups);
   return (
     <div>
       <GroupsPage groups={groups} />
