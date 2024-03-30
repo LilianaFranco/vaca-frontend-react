@@ -7,20 +7,35 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { create } from "../../../services/GroupService";
 
 const NewGroupModal = ({ open, handleClose }) => {
-  const [groupName, setGroupName] = useState();
+  const [newGroup, setNewGroup] = useState({
+    id: "",
+    name: "",
+    color: "",
+    balanceStatus: "",
+    balanceValue: "",
+  });
 
-  const handleChange = (event) => {
-    setGroupName(event.target.value);
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setNewGroup({ ...newGroup, [e.target.name]: e.target.value });
   };
 
-  const handleCreateGroup = () => {
-    // Here you can handle creating a new group with the group name
-    console.log("Creating group:", groupName);
-    // Reset the group name input after creating the group
-    setGroupName("");
-    // Close the modal
+  const handleCreateGroup = (e) => {
+    e.preventDefault();
+    let data = {
+      name: newGroup.name,
+    };
+    console.log(data);
+
+    const createGroup = create(data);
+    createGroup
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
     handleClose();
   };
 
@@ -62,6 +77,7 @@ const NewGroupModal = ({ open, handleClose }) => {
             label="Nombre (Obligatorio)"
             multiline
             maxRows={4}
+            name="name"
             onChange={handleChange}
           />
           <Button variant="contained" onClick={handleCreateGroup}>

@@ -3,6 +3,7 @@ import GroupCard from "../../common/GroupCard";
 import { Box, Button, Container, ListItem, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import NewGroupModal from "./NewGroupModal";
+import { Navigate } from "react-router-dom";
 
 const GroupsPage = ({ groups }) => {
   const [open, setOpen] = useState(false);
@@ -13,6 +14,7 @@ const GroupsPage = ({ groups }) => {
 
   const handleClose = () => {
     setOpen(false);
+    Navigate("/groups/");
   };
 
   return (
