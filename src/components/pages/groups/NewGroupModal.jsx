@@ -25,18 +25,19 @@ const NewGroupModal = ({ open, handleClose }) => {
     setNewGroup({ ...newGroup, [e.target.name]: e.target.value });
   };
 
-  const handleCreateGroup = (e) => {
-    e.preventDefault();
-    let data = {
+  const handleCreateGroup = () => {
+    const data = {
       name: newGroup.name,
     };
     console.log(data);
 
     const createGroup = create(data);
     createGroup
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        handleClose();
+      })
       .catch((err) => console.log(err));
-    handleClose();
   };
 
   return (
@@ -56,10 +57,16 @@ const NewGroupModal = ({ open, handleClose }) => {
             bgcolor: "background.paper",
             boxShadow: 24,
             p: 4,
-            width: 400,
+            width: { xs: "75%", md: "40%" },
           }}
         >
-          <Container sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Container
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              padding: { xs: 0 },
+            }}
+          >
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Nuevo Grupo
             </Typography>
@@ -73,7 +80,7 @@ const NewGroupModal = ({ open, handleClose }) => {
           </Typography>
           <TextField
             fullWidth
-            sx={{ margin: "30px 0px" }}
+            sx={{ margin: "30px 0px", border: "ActiveBorder" }}
             label="Nombre (Obligatorio)"
             multiline
             maxRows={4}
