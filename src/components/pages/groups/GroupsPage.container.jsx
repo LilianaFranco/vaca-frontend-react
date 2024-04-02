@@ -1,26 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import GroupsPage from "./GroupsPage";
+import { get } from "../../../services/GroupService";
 
 const GroupsPageContainer = () => {
-  const groups = [
-    {
-      id: 1,
-      name: "Group #1",
-      color: "black",
-      balanceStatus: "Debo",
-      balanceValue: "20000",
-    },
+  const [groups, setGroups] = useState([]);
 
-    {
-      id: 2,
-      name: "Group #2",
-      color: "red",
-      balanceStatus: "Debo",
-      balanceValue: "3000",
-    },
-  ];
+  useEffect(() => {
+    const groups = get();
+    groups
+      .then((res) => setGroups(res.data.reverse()))
+      .catch((err) => console.log(err));
+  }, [groups]);
 
-  console.log(groups);
   return (
     <div>
       <GroupsPage groups={groups} />
