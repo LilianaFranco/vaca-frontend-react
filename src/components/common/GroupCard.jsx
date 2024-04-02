@@ -14,7 +14,15 @@ import React from "react";
 
 const GroupCard = ({ group }) => {
   return (
-    <Card sx={{ display: "flex", margin: "8px 15px" }}>
+    <Card
+      sx={{
+        display: "flex",
+      }}
+    >
+      {/* <div>
+        <img src="src/assets/Logo.svg" alt="" />
+      </div> */}
+
       <CardMedia
         component="img"
         image="src/assets/Logo.svg"

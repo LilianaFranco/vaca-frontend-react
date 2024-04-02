@@ -3,6 +3,7 @@ import GroupCard from "../../common/GroupCard";
 import { Box, Button, Container, ListItem, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import NewGroupModal from "./NewGroupModal";
+import { Navigate } from "react-router-dom";
 
 const GroupsPage = ({ groups }) => {
   const [open, setOpen] = useState(false);
@@ -49,15 +50,18 @@ const GroupsPage = ({ groups }) => {
         </Container>
         <NewGroupModal open={open} handleClose={handleClose} />
         <Box
-          display={"flex"}
-          flexDirection={"row"}
-          flexWrap={"wrap"}
-          justifyContent="center"
-          alignItems="center"
-          gap={2}
+          sx={{
+            display: "flex",
+            gap: 2,
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
         >
-          {groups.map((group) => (
-            <ListItem key={group.id} sx={{ minWidth: 0 }}>
+          {groups.map((group, index) => (
+            <ListItem
+              key={index}
+              sx={{ width: { xs: "unset", md: "fit-content" } }}
+            >
               <GroupCard group={group} />
             </ListItem>
           ))}
