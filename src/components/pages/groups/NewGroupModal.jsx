@@ -7,8 +7,8 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { create } from "../../../services/GroupService";
+import ColorPicker from "../../common/ColorPicker";
 
 const NewGroupModal = ({ open, handleClose }) => {
   const [newGroup, setNewGroup] = useState({
@@ -18,8 +18,6 @@ const NewGroupModal = ({ open, handleClose }) => {
     balanceStatus: "",
     balanceValue: "",
   });
-
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setNewGroup({ ...newGroup, [e.target.name]: e.target.value });
@@ -75,18 +73,20 @@ const NewGroupModal = ({ open, handleClose }) => {
             </Button>
           </Container>
           <Typography variant="body1" sx={{ mt: 3 }}>
-            Para crear un grupo elige un nombre único y un color para
-            diferenciarlo.
+            Para crear un grupo elige un nombre a continuación.
           </Typography>
           <TextField
+            error
             fullWidth
-            sx={{ margin: "30px 0px", border: "ActiveBorder" }}
+            sx={{ margin: "30px 0px" }}
             label="Nombre (Obligatorio)"
-            multiline
             maxRows={4}
             name="name"
+            variant="outlined"
             onChange={handleChange}
           />
+          <ColorPicker />
+
           <Button variant="contained" onClick={handleCreateGroup}>
             Crear grupo
           </Button>
