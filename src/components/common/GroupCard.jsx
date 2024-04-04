@@ -15,15 +15,13 @@ import { useNavigate } from "react-router-dom";
 const GroupCard = ({ group }) => {
   const navigate = useNavigate();
 
-  const handleCardClick = () => {
+  const handleCardClick = (e) => {
+    e.preventDefault();
     navigate(`/groups/${group.id}`);
   };
 
   return (
     <Card>
-      {/* <div>
-        <img src="src/assets/Logo.svg" alt="" />
-      </div> */}
       <CardActionArea
         onClick={handleCardClick}
         sx={{

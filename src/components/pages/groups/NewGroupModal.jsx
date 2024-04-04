@@ -19,6 +19,13 @@ const NewGroupModal = ({ open, handleClose }) => {
     balanceValue: "",
   });
 
+  const [selectedColor, setSelectedColor] = useState("#FFFFFF");
+
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
+    setNewGroup({ ...newGroup, color: color });
+  };
+
   const handleChange = (e) => {
     setNewGroup({ ...newGroup, [e.target.name]: e.target.value });
   };
@@ -26,6 +33,7 @@ const NewGroupModal = ({ open, handleClose }) => {
   const handleCreateGroup = () => {
     const data = {
       name: newGroup.name,
+      color: newGroup.color,
     };
     console.log(data);
 
@@ -85,7 +93,11 @@ const NewGroupModal = ({ open, handleClose }) => {
             variant="outlined"
             onChange={handleChange}
           />
-          <ColorPicker />
+
+          <ColorPicker
+            handleSelect={handleColorSelect}
+            selectedColor={selectedColor}
+          />
 
           <Button variant="contained" onClick={handleCreateGroup}>
             Crear grupo

@@ -1,7 +1,7 @@
 import { Grid, ListItem } from "@mui/material";
 import React, { useState } from "react";
 
-const ColorPicker = () => {
+const ColorPicker = ({ handleSelect, selectedColor }) => {
   const colorPalette = [
     "#A65293",
     "#66B04C",
@@ -13,18 +13,11 @@ const ColorPicker = () => {
     "#FFFFFF",
   ];
 
-  const [selectedColor, setSelectedColor] = useState(null);
-
-  const handleColorSelect = (color) => {
-    setSelectedColor(color);
-  };
-
   return (
     <Grid
       container
       spacing={1}
-      marginBottom="30px"
-      sx={{ width: { xs: "100%", md: "70%" } }}
+      sx={{ width: { xs: "100%", md: "70%" }, margin: "0 auto 30px" }}
     >
       {colorPalette.map((color, index) => (
         <Grid item xs={3} key={index}>
@@ -37,7 +30,7 @@ const ColorPicker = () => {
               borderRadius: "3px",
               border: selectedColor === color ? "2px solid black" : "none",
             }}
-            onClick={() => handleColorSelect(color)}
+            onClick={() => handleSelect(color)}
           ></ListItem>
         </Grid>
       ))}
