@@ -1,4 +1,4 @@
-import { Grid, ListItem } from "@mui/material";
+import { Box, Grid, ListItem } from "@mui/material";
 import React, { useState } from "react";
 
 const ColorPicker = ({ handleSelect, selectedColor }) => {
@@ -14,27 +14,39 @@ const ColorPicker = ({ handleSelect, selectedColor }) => {
   ];
 
   return (
-    <Grid
-      container
-      spacing={1}
-      sx={{ width: { xs: "100%", md: "70%" }, margin: "0 auto 30px" }}
+    <Box
+      sx={{
+        border: 1,
+        borderColor: "#858583",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
     >
-      {colorPalette.map((color, index) => (
-        <Grid item xs={3} key={index}>
-          <ListItem
-            component="button"
-            style={{
-              backgroundColor: color,
-              width: "100%",
-              height: "50px",
-              borderRadius: "3px",
-              border: selectedColor === color ? "2px solid black" : "none",
-            }}
-            onClick={() => handleSelect(color)}
-          ></ListItem>
-        </Grid>
-      ))}
-    </Grid>
+      <Grid
+        container
+        spacing={2}
+        sx={{ width: { xs: "100%", md: "100%", padding: "10px" } }}
+      >
+        {colorPalette.map((color, index) => (
+          <Grid item xs={3} key={index}>
+            <ListItem
+              component="button"
+              style={{
+                margin: 0,
+                padding: 0,
+                backgroundColor: color,
+                width: "80%",
+                height: "50px",
+                borderRadius: "3px",
+                border: selectedColor === color ? "2px solid black" : "none",
+              }}
+              onClick={() => handleSelect(color)}
+            ></ListItem>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 };
 

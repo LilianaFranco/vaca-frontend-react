@@ -5,8 +5,10 @@ import NavBar from "./components/layout/navbar/NavBar";
 function App() {
   return (
     <>
-      <NavBar />
-      <RoutesFile />
+      <div id="content">
+        <NavBar />
+        <RoutesFile />
+      </div>
     </>
   );
 }

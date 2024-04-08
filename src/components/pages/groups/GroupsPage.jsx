@@ -3,7 +3,6 @@ import GroupCard from "../../common/GroupCard";
 import { Box, Button, Container, ListItem, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import NewGroupModal from "./NewGroupModal";
-import { Navigate } from "react-router-dom";
 
 const GroupsPage = ({ groups }) => {
   const [open, setOpen] = useState(false);
@@ -24,6 +23,7 @@ const GroupsPage = ({ groups }) => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          margin: { xs: "10px", md: "20px" },
         }}
       >
         <Container
@@ -48,7 +48,8 @@ const GroupsPage = ({ groups }) => {
             Nuevo grupo
           </Button>
         </Container>
-        <NewGroupModal open={open} handleClose={handleClose} />
+        {open && <NewGroupModal open={open} handleClose={handleClose} />}
+
         <Box
           sx={{
             display: "flex",
