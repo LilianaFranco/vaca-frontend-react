@@ -11,7 +11,6 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
-import { Margin } from "@mui/icons-material";
 
 const settings = ["Profile", "Account", "Logout"];
 
@@ -48,7 +47,7 @@ function NavBar() {
   };
 
   return (
-    <AppBar position="static" sx={{ padding: "4px" }}>
+    <AppBar position="static" sx={{ padding: { xs: "20px", md: "10px 60px" } }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* Menu in Mobile */}

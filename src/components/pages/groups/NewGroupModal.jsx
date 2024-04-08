@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Container,
@@ -7,27 +8,63 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { create } from "../../../services/GroupService";
+import ColorPicker from "../../common/ColorPicker";
 
 const NewGroupModal = ({ open, handleClose }) => {
   const [newGroup, setNewGroup] = useState({
     id: "",
     name: "",
-    color: "",
+    color: "#FFFFFF",
     balanceStatus: "",
     balanceValue: "",
   });
 
-  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState({
+    nameEmpty: "",
+    nameExceedingLength: "",
+  });
+  const [showAlert, setShowAlert] = useState(false);
+  const [selectedColor, setSelectedColor] = useState("#FFFFFF");
 
-  const handleChange = (e) => {
+  const handleNameChange = (e) => {
     setNewGroup({ ...newGroup, [e.target.name]: e.target.value });
+    console.log(newGroup.name);
+  };
+
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
+    setNewGroup({ ...newGroup, color: color });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (newGroup.name.length === 0) {
+      console.log(showAlert);
+      setShowAlert(true);
+      setErrorMessage({
+        ...errorMessage,
+        nameEmpty: "Elige un nombre para continuar",
+      });
+    } else if (newGroup.name.length > 30) {
+      console.log(showAlert);
+      setErrorMessage({
+        ...errorMessage,
+        nameExceedingLength: "El nombre no puede tener más de 30 caracteres",
+      });
+    } else {
+      console.log(showAlert);
+      handleCreateGroup();
+      setShowAlert(false);
+    }
   };
 
   const handleCreateGroup = () => {
+    console.log(showAlert);
     const data = {
       name: newGroup.name,
+      color: newGroup.color,
     };
     console.log(data);
 
@@ -37,7 +74,9 @@ const NewGroupModal = ({ open, handleClose }) => {
         console.log(res);
         handleClose();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -57,7 +96,7 @@ const NewGroupModal = ({ open, handleClose }) => {
             bgcolor: "background.paper",
             boxShadow: 24,
             p: 4,
-            width: { xs: "75%", md: "40%" },
+            width: { xs: "75%", md: "25%" },
           }}
         >
           <Container
@@ -67,29 +106,40 @@ const NewGroupModal = ({ open, handleClose }) => {
               padding: { xs: 0 },
             }}
           >
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+            <Typography id="modal-modal-title" variant="h4" component="h2">
               Nuevo Grupo
             </Typography>
             <Button variant="contained" onClick={handleClose}>
               X
             </Button>
           </Container>
-          <Typography variant="body1" sx={{ mt: 3 }}>
-            Para crear un grupo elige un nombre único y un color para
-            diferenciarlo.
-          </Typography>
-          <TextField
-            fullWidth
-            sx={{ margin: "30px 0px", border: "ActiveBorder" }}
-            label="Nombre (Obligatorio)"
-            multiline
-            maxRows={4}
-            name="name"
-            onChange={handleChange}
-          />
-          <Button variant="contained" onClick={handleCreateGroup}>
-            Crear grupo
-          </Button>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              border={1}
+              fullWidth
+              sx={{ margin: "30px 0px" }}
+              label="Nombre (Obligatorio)"
+              name="name"
+              variant="outlined"
+              onChange={handleNameChange}
+            />
+            <ColorPicker
+              handleSelect={handleColorSelect}
+              selectedColor={selectedColor}
+            />
+            {showAlert && (
+              <Alert severity="error">
+                {errorMessage.nameEmpty || errorMessage.nameExceedingLength}
+              </Alert>
+            )}
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{ marginTop: "30px" }}
+            >
+              Crear grupo
+            </Button>
+          </form>
         </Box>
       </Modal>
     </div>
