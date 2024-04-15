@@ -1,39 +1,45 @@
+import React, { useState } from "react";
+import { create } from "../../../services/GroupService";
 import {
-  Alert,
   Box,
   Button,
   Container,
   Modal,
   TextField,
   Typography,
+  Snackbar,
 } from "@mui/material";
-import React, { useState } from "react";
-import { create } from "../../../services/GroupService";
 import ColorPicker from "../../common/ColorPicker";
+import { Alert } from "@mui/material";
 
-const NewGroupModal = ({ open, handleClose }) => {
+const NewGroupModal = ({
+  open,
+  handleClose,
+  setSnackbarOpen,
+  snackbarOpen,
+}) => {
+  console.log(snackbarOpen);
+
   const [newGroup, setNewGroup] = useState({
     id: "",
     name: "",
+    ownerUserId: "",
     color: "#FFFFFF",
     balanceStatus: "",
     balanceValue: "",
+    createdAt: "",
   });
 
-  const [errorMessage, setErrorMessage] = useState({
-    nameEmpty: "",
-    nameExceedingLength: "",
-  });
-  const [showAlert, setShowAlert] = useState(false);
-  const [selectedColor, setSelectedColor] = useState("#FFFFFF");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleNameChange = (e) => {
-    setNewGroup({ ...newGroup, [e.target.name]: e.target.value });
+    const newName = e.target.value.trim().toLowerCase();
+    setNewGroup({ ...newGroup, name: newName });
+    setErrorMessage("");
     console.log(newGroup.name);
   };
 
   const handleColorSelect = (color) => {
-    setSelectedColor(color);
     setNewGroup({ ...newGroup, color: color });
   };
 
@@ -41,41 +47,37 @@ const NewGroupModal = ({ open, handleClose }) => {
     e.preventDefault();
 
     if (newGroup.name.length === 0) {
-      console.log(showAlert);
-      setShowAlert(true);
-      setErrorMessage({
-        ...errorMessage,
-        nameEmpty: "Elige un nombre para continuar",
-      });
+      setErrorMessage("Elige un nombre para continuar");
     } else if (newGroup.name.length > 30) {
-      console.log(showAlert);
-      setErrorMessage({
-        ...errorMessage,
-        nameExceedingLength: "El nombre no puede tener más de 30 caracteres",
-      });
+      setErrorMessage("El nombre no puede tener más de 30 caracteres");
     } else {
-      console.log(showAlert);
+      console.log(snackbarOpen);
       handleCreateGroup();
-      setShowAlert(false);
+      setErrorMessage("");
     }
   };
 
   const handleCreateGroup = () => {
-    console.log(showAlert);
     const data = {
-      name: newGroup.name,
+      name: newGroup.name.trim(),
       color: newGroup.color,
+      ownerUserId: "",
+      balanceStatus: "",
+      balanceValue: "",
+      createdAt: "Hoy",
     };
-    console.log(data);
 
     const createGroup = create(data);
     createGroup
       .then((res) => {
-        console.log(res);
         handleClose();
+        setSnackbarOpen(true);
       })
       .catch((err) => {
         console.log(err);
+        if (err.response && err.response.status === 409) {
+          setErrorMessage("El grupo ya existe. Elige otro nombre.");
+        }
       });
   };
 
@@ -125,11 +127,11 @@ const NewGroupModal = ({ open, handleClose }) => {
             />
             <ColorPicker
               handleSelect={handleColorSelect}
-              selectedColor={selectedColor}
+              selectedColor={newGroup.color}
             />
-            {showAlert && (
-              <Alert severity="error">
-                {errorMessage.nameEmpty || errorMessage.nameExceedingLength}
+            {!!errorMessage && (
+              <Alert severity="error" sx={{ marginTop: "20px" }}>
+                {errorMessage}
               </Alert>
             )}
             <Button

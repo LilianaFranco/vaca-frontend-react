@@ -39,9 +39,19 @@ const ColorPicker = ({ handleSelect, selectedColor }) => {
                 width: "80%",
                 height: "50px",
                 borderRadius: "3px",
-                border: selectedColor === color ? "2px solid black" : "none",
+                border:
+                  selectedColor === color
+                    ? "2px solid black"
+                    : "1px solid black",
+                boxShadow:
+                  selectedColor === color
+                    ? "0px 0px 15px rgba(0, 0, 0, 0.3)"
+                    : "none",
               }}
-              onClick={() => handleSelect(color)}
+              onClick={(e) => {
+                e.preventDefault();
+                handleSelect(color);
+              }}
             ></ListItem>
           </Grid>
         ))}

@@ -1,10 +1,24 @@
 import React, { useState } from "react";
 import GroupCard from "../../common/GroupCard";
-import { Box, Button, Container, ListItem, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  ListItem,
+  Typography,
+  Snackbar,
+  Alert,
+} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import NewGroupModal from "./NewGroupModal";
 
-const GroupsPage = ({ groups }) => {
+const GroupsPage = ({
+  groups,
+  onGroupsRefresh,
+  snackbarOpen,
+  setSnackbarOpen,
+}) => {
+  console.log(snackbarOpen);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -12,8 +26,14 @@ const GroupsPage = ({ groups }) => {
   };
 
   const handleClose = () => {
+    onGroupsRefresh();
     setOpen(false);
+    console.log("Modal closed");
   };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  }; // Define handleSnackbarClose function here
 
   return (
     <div>
@@ -37,7 +57,7 @@ const GroupsPage = ({ groups }) => {
           <Box>
             <Typography variant="h6">Debes:</Typography>
             <Typography variant="h5" color="red">
-              $12.000 COP
+              $0 COP
             </Typography>
           </Box>
           <Button
@@ -48,7 +68,14 @@ const GroupsPage = ({ groups }) => {
             Nuevo grupo
           </Button>
         </Container>
-        {open && <NewGroupModal open={open} handleClose={handleClose} />}
+        {open && (
+          <NewGroupModal
+            open={open}
+            handleClose={handleClose}
+            setSnackbarOpen={setSnackbarOpen}
+            snackbarOpen={snackbarOpen}
+          />
+        )}
 
         <Box
           sx={{
@@ -67,6 +94,21 @@ const GroupsPage = ({ groups }) => {
             </ListItem>
           ))}
         </Box>
+        <Snackbar
+          open={snackbarOpen}
+          autoHideDuration={6000}
+          onClose={handleSnackbarClose}
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        >
+          <Alert
+            onClose={handleSnackbarClose}
+            severity="success"
+            variant="filled"
+            sx={{ width: "100%" }}
+          >
+            Grupo creado exitosamente!
+          </Alert>
+        </Snackbar>
       </Box>
     </div>
   );

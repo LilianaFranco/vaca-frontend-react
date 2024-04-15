@@ -1,4 +1,4 @@
-import { GroupInstance } from "./GroupsInstance";
+import { GroupInstance } from "./GroupsInstance.js";
 
 export const get = () => {
   let groups = GroupInstance.get();
