@@ -1,5 +1,5 @@
 import { Box, Grid, ListItem } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 
 const ColorPicker = ({ handleSelect, selectedColor }) => {
   const colorPalette = [

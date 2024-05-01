@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import GroupCard from "../../common/GroupCard";
+import GroupCard from "src/components/common/GroupCard";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import {
   Box,
   Button,
@@ -11,6 +13,7 @@ import {
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import NewGroupModal from "./NewGroupModal";
+import { useNavigate } from "react-router-dom";
 
 const GroupsPage = ({
   groups,
@@ -34,6 +37,13 @@ const GroupsPage = ({
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   }; // Define handleSnackbarClose function here
+
+  const navigate = useNavigate();
+
+  const handleCardClick = (group) => {
+    console.log(group.id);
+    navigate(`/groups/${group.id}`);
+  };
 
   return (
     <div>
@@ -90,7 +100,28 @@ const GroupsPage = ({
               key={index}
               sx={{ width: { xs: "unset", md: "fit-content" } }}
             >
-              <GroupCard group={group} />
+              <GroupCard
+                group={group}
+                actions={
+                  <React.Fragment>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      startIcon={<EditIcon />}
+                      onClick={() => handleCardClick(group)}
+                    >
+                      Editar
+                    </Button>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      startIcon={<DeleteIcon />}
+                    >
+                      Eliminar
+                    </Button>
+                  </React.Fragment>
+                }
+              />
             </ListItem>
           ))}
         </Box>

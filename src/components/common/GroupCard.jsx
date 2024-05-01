@@ -1,24 +1,14 @@
 import {
-  Button,
   Card,
   CardActions,
   CardContent,
   CardMedia,
   Typography,
 } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
+import cardLogo from "src/assets/Logo.svg";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
-const GroupCard = ({ group }) => {
-  const navigate = useNavigate();
-
-  const handleCardClick = (e) => {
-    e.preventDefault();
-    navigate(`/groups/${group.id}`);
-  };
-
+const GroupCard = ({ group, actions }) => {
   return (
     <Card
       sx={{
@@ -27,7 +17,7 @@ const GroupCard = ({ group }) => {
     >
       <CardMedia
         component="img"
-        image="src/assets/Logo.svg"
+        image={cardLogo}
         alt="Vaca Logo"
         sx={{
           height: "60px",
@@ -51,17 +41,7 @@ const GroupCard = ({ group }) => {
         <CardActions
           sx={{ justifyContent: "space-between", padding: "10px 0px" }}
         >
-          <Button
-            size="small"
-            variant="contained"
-            startIcon={<EditIcon />}
-            onClick={handleCardClick}
-          >
-            EDITAR
-          </Button>
-          <Button size="small" variant="contained" startIcon={<DeleteIcon />}>
-            ELIMINAR
-          </Button>
+          {actions}
         </CardActions>
       </CardContent>
     </Card>

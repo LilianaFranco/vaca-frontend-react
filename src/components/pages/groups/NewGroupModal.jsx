@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { create } from "../../../services/GroupService";
+import { create } from "src/services/GroupService";
 import {
   Box,
   Button,
@@ -7,7 +7,6 @@ import {
   Modal,
   TextField,
   Typography,
-  Snackbar,
 } from "@mui/material";
 import ColorPicker from "../../common/ColorPicker";
 import { Alert } from "@mui/material";
