@@ -10,6 +10,8 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import Logo from "src/assets/Logo.svg";
+
 import { Link } from "react-router-dom";
 
 const settings = ["Profile", "Account", "Logout"];
@@ -50,12 +52,7 @@ function NavBar() {
     <AppBar position="static" sx={{ padding: { xs: "20px", md: "10px 60px" } }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* Menu in Mobile */}
-          <Avatar
-            alt="logo"
-            src="src/assets/Logo.svg"
-            sx={{ width: "unset", borderRadius: "unset" }}
-          />
+          <Avatar alt="logo" src={Logo} />
           <Typography
             variant="h6"
             noWrap

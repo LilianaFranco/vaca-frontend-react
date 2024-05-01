@@ -1,10 +1,12 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Chip, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import React from "react";
 import GroupCard from "src/components/common/GroupCard";
 import Divider from "@mui/material/Divider";
+import ExpensesCard from "src/components/common/ExpensesCard";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 const GroupDetail = ({ group }) => {
   const handleCardClick = () => {
@@ -19,6 +21,7 @@ const GroupDetail = ({ group }) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <Box
@@ -26,7 +29,7 @@ const GroupDetail = ({ group }) => {
             display: "flex",
             justifyContent: { xs: "space-around", md: "end" },
             alignItems: { xs: "center", md: "end" },
-            margin: "30px",
+            marginTop: "30px",
             alignSelf: "flex-end",
           }}
         >
@@ -58,9 +61,7 @@ const GroupDetail = ({ group }) => {
         <Box
           sx={{
             width: { xs: "unset", md: "fit-content" },
-            margin: "auto",
             display: "flex",
-            justifyContent: "center",
           }}
         >
           <GroupCard
@@ -84,7 +85,22 @@ const GroupDetail = ({ group }) => {
             Historial de gastos
           </Typography>
         </Divider>
-        <Box>Me deben</Box>
+        <Chip
+          icon={<CalendarMonthIcon />}
+          label="Mes"
+          sx={{ marginBottom: "20px" }}
+        />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignContent: "center",
+          }}
+        >
+          <ExpensesCard />
+          <ExpensesCard />
+          <ExpensesCard />
+        </Box>
       </Box>
     </div>
   );
