@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
-import GroupDetail from "src/components/pages/groups/GroupDetail";
-import { getById } from "src/services/GroupService";
-import { useParams } from "react-router-dom";
+import GroupsPage from "src/pages/groups/GroupsPage";
+import { get } from "src/services/groupServices/GroupService";
 
-const GroupDetailContainer = () => {
-  const id = useParams().id;
+const GroupsPageContainer = () => {
+  const [groups, setGroups] = useState([]);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
-  const [group, setGroup] = useState(null);
-
-  const getGroup = () => {
-    const groupRequest = getById(id);
-    groupRequest
+  const getGroups = () => {
+    const groups = get();
+    groups
       .then((res) => {
-        setGroup(res.data.group);
+        setGroups(res.data.groups);
       })
       .catch((err) => {
         if (err.response) {
@@ -32,18 +30,24 @@ const GroupDetailContainer = () => {
   };
 
   useEffect(() => {
-    getGroup();
+    getGroups();
   }, []);
 
-  if (!group) {
-    return <div>Cargando...</div>;
-  }
+  const onGroupsRefresh = () => {
+    console.log("Cambios en grupos");
+    getGroups();
+  };
 
   return (
     <div>
-      <GroupDetail group={group} />
+      <GroupsPage
+        groups={groups}
+        onGroupsRefresh={onGroupsRefresh}
+        snackbarOpen={snackbarOpen}
+        setSnackbarOpen={setSnackbarOpen}
+      />
     </div>
   );
 };
 
-export default GroupDetailContainer;
+export default GroupsPageContainer;

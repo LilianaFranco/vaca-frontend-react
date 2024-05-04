@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { create } from "src/services/GroupService";
+import { create } from "src/services/groupServices/GroupService";
 import {
   Box,
   Button,
@@ -8,7 +8,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import ColorPicker from "../../common/ColorPicker";
+import ColorPicker from "../../components/common/ColorPicker";
 import { Alert } from "@mui/material";
 
 const NewGroupModal = ({
