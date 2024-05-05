@@ -47,17 +47,23 @@ const LogInPageContainer = () => {
         }
       });
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (user.email.length === 0) {
-      setErrorMessage("Elige un correo para continuar");
+      setErrorMessage("Please enter your email.");
+      return;
     } else if (user.password.length === 0) {
-      setErrorMessage("Ingresa el password para continuar");
-    } else {
-      handleAuthUser(user);
+      setErrorMessage("Please enter your password.");
+      return;
+    }
+
+    try {
+      await handleAuthUser(user);
       setErrorMessage("");
+    } catch (err) {
+      console.log("Error during login:", err);
+      setErrorMessage("Something went wrong. Please try again.");
     }
   };
 

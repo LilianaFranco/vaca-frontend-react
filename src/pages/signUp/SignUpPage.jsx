@@ -22,6 +22,7 @@ const SignUpPage = ({
   handleChange,
   handleSubmit,
 }) => {
+  console.log(errorMessage);
   return (
     <div>
       <Box
@@ -36,14 +37,17 @@ const SignUpPage = ({
         <img
           src="src/assets/Logo_login.svg"
           alt=""
-          style={{ height: "150px", marginBottom: "20px" }}
+          style={{ height: "200px", margin: "20px" }}
         />
         <h3 style={{ color: Theme.palette.primary.main, fontWeight: "bold" }}>
           Registro
         </h3>
         <form onSubmit={handleSubmit}>
           <Box>
-            <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+            <FormControl
+              variant="outlined"
+              sx={{ width: { xs: "100%", md: "400px" } }}
+            >
               <TextField
                 required
                 label="Name"

@@ -44,16 +44,16 @@ const SignUpPageContainer = () => {
       });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (user.name.length === 0) {
       setErrorMessage("Elige un nombre para continuar");
     } else if (user.email.length === 0) {
-      setErrorMessage("El un correo para continuar");
+      setErrorMessage("Elige un correo para continuar");
     } else {
       try {
-        await handleCreateUser(user);
+        handleCreateUser(user);
         navigate("/login");
       } catch (err) {
         console.log(err);
