@@ -17,8 +17,6 @@ const NewGroupModal = ({
   setSnackbarOpen,
   snackbarOpen,
 }) => {
-  console.log(snackbarOpen);
-
   const [newGroup, setNewGroup] = useState({
     id: "",
     name: "",
@@ -35,7 +33,6 @@ const NewGroupModal = ({
     const newName = e.target.value.trim().toLowerCase();
     setNewGroup({ ...newGroup, name: newName });
     setErrorMessage("");
-    console.log(newGroup.name);
   };
 
   const handleColorSelect = (color) => {
@@ -50,7 +47,6 @@ const NewGroupModal = ({
     } else if (newGroup.name.length > 30) {
       setErrorMessage("El nombre no puede tener más de 30 caracteres");
     } else {
-      console.log(snackbarOpen);
       handleCreateGroup();
       setErrorMessage("");
     }

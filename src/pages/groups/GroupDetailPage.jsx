@@ -12,8 +12,7 @@ const GroupDetailPage = ({ group }) => {
   const handleCardClick = () => {
     console.log("Me fui del grupo");
   };
-  console.log(group);
-  // const { name, color, id } = group;
+
   return (
     <div>
       <Box

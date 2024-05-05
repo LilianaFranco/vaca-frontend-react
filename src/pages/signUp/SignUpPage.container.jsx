@@ -1,8 +1,10 @@
 import { useState } from "react";
 import SignUpPage from "./SignUpPage";
 import { create } from "src/services/userServices/UserService";
+import { useNavigate } from "react-router-dom";
 
 const SignUpPageContainer = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -22,7 +24,6 @@ const SignUpPageContainer = () => {
   const handleChange = (e, property) => {
     setUser({ ...user, [property]: e.target.value });
   };
-  console.log("set", user);
 
   const handleCreateUser = (user) => {
     const data = {
@@ -43,7 +44,7 @@ const SignUpPageContainer = () => {
       });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (user.name.length === 0) {
@@ -51,8 +52,19 @@ const SignUpPageContainer = () => {
     } else if (user.email.length === 0) {
       setErrorMessage("El un correo para continuar");
     } else {
-      handleCreateUser(user);
-      setErrorMessage("");
+      try {
+        await handleCreateUser(user);
+        navigate("/login");
+      } catch (err) {
+        console.log(err);
+        if (err.response && err.response.status === 409) {
+          setErrorMessage("El correo ya existe. Elige otro correo.");
+        } else {
+          setErrorMessage(
+            "Error al crear usuario. Inténtelo de nuevo más tarde."
+          );
+        }
+      }
     }
   };
 

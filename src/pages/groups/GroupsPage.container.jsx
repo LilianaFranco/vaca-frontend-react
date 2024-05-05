@@ -34,7 +34,6 @@ const GroupsPageContainer = () => {
   }, []);
 
   const onGroupsRefresh = () => {
-    console.log("Cambios en grupos");
     getGroups();
   };
 
