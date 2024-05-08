@@ -35,6 +35,7 @@ const SignUpPageContainer = () => {
     createUser
       .then((res) => {
         console.log(res);
+        navigate("/login");
       })
       .catch((err) => {
         console.log(err);
@@ -54,7 +55,6 @@ const SignUpPageContainer = () => {
     } else {
       try {
         handleCreateUser(user);
-        navigate("/login");
       } catch (err) {
         console.log(err);
         if (err.response && err.response.status === 409) {

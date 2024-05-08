@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { login } from "src/services/authServices/loginService.js";
 import LogInPage from "./LogInPage";
+import { useNavigate } from "react-router-dom";
 
 const LogInPageContainer = () => {
   const [user, setUser] = useState({
@@ -8,16 +9,10 @@ const LogInPageContainer = () => {
     password: "",
   });
 
-  const [sessionToken, setSessionToken] = useState("");
-
+  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
 
   const [showPassword, setShowPassword] = useState(false);
-
-  useEffect(() => {
-    // Para poder ver mi token
-    console.log(sessionToken);
-  }, [sessionToken]);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -37,8 +32,9 @@ const LogInPageContainer = () => {
     const authUser = login(data);
     authUser
       .then((res) => {
-        setSessionToken(res.data.token);
-        console.log(sessionToken);
+        sessionStorage.setItem("token", res.data.token);
+        window.dispatchEvent(new Event("storage")); //para hacerle un triger al storage y poder ver el navbar. El hook se ejecuta antes de nuestra protección.
+        navigate("/groups", { replace: true });
       })
       .catch((err) => {
         console.log(err);
