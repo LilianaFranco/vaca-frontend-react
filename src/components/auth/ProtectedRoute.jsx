@@ -5,7 +5,7 @@ import useAuth from "src/hooks/useAuth";
 const ProtectedRoute = ({ children }) => {
   const isAuthorized = useAuth();
   //   return isAuthorized ? <>{children}</> : <div>Unauthorized</div>;
-  return isAuthorized ? <>{children}</> : <Navigate to={"/login"} />;
+  return isAuthorized ? <>{children}</> : <Navigate to={"/"} />;
 };
 
 export default ProtectedRoute;
