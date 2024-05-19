@@ -12,7 +12,7 @@ const RoutesFile = () => {
   return (
     <Routes>
       <Route path="/signup" element={<SignUpPageContainer />} />
-      <Route path="/login" element={<LogInPageContainer />} />
+      <Route path="/" element={<LogInPageContainer />} />
       <Route
         path="/groups"
         element={

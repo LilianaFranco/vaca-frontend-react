@@ -89,7 +89,7 @@ const SignUpPage = ({
                       },
                     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
                       {
-                        borderColor: "white", // Change the outline color to white when focused
+                        borderColor: "white",
                       },
                     "& .MuiOutlinedInput-input": {
                       color: "white",
@@ -112,7 +112,7 @@ const SignUpPage = ({
                       },
                     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
                       {
-                        borderColor: "white", // Change the outline color to white when focused
+                        borderColor: "white",
                       },
                     "& .MuiOutlinedInput-input": {
                       color: "white",
@@ -154,7 +154,7 @@ const SignUpPage = ({
                       },
                     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
                       {
-                        borderColor: "white", // Change the outline color to white when focused
+                        borderColor: "white",
                       },
                     "& .MuiOutlinedInput-input": {
                       color: "white",
@@ -201,7 +201,7 @@ const SignUpPage = ({
           <Button
             variant="contained"
             sx={{ margin: "20px", width: { xs: "100%", md: "400px" } }}
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/")}
           >
             Ingresar
           </Button>
