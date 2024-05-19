@@ -30,6 +30,7 @@ const GroupCard = ({ group, actions }) => {
       <CardContent
         sx={{
           display: "block",
+          "&:last-child": { paddingBottom: 0 },
         }}
       >
         <Typography variant="h6" gutterBottom>
