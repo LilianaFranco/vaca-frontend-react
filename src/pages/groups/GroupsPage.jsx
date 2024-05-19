@@ -36,12 +36,11 @@ const GroupsPage = ({
 
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
-  }; // Define handleSnackbarClose function here
+  };
 
   const navigate = useNavigate();
 
   const handleCardClick = (group) => {
-    console.log(group.id);
     navigate(`/groups/${group.id}`);
   };
 

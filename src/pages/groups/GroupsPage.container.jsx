@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import GroupsPage from "src/components/pages/groups/GroupsPage";
-import { get } from "src/services/GroupService";
+import GroupsPage from "src/pages/groups/GroupsPage";
+import { get } from "src/services/groupServices/GroupService";
 
 const GroupsPageContainer = () => {
   const [groups, setGroups] = useState([]);
@@ -34,7 +34,6 @@ const GroupsPageContainer = () => {
   }, []);
 
   const onGroupsRefresh = () => {
-    console.log("Cambios en grupos");
     getGroups();
   };
 

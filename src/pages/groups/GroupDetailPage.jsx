@@ -8,12 +8,11 @@ import Divider from "@mui/material/Divider";
 import ExpensesCard from "src/components/common/ExpensesCard";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
-const GroupDetail = ({ group }) => {
+const GroupDetailPage = ({ group }) => {
   const handleCardClick = () => {
     console.log("Me fui del grupo");
   };
-  console.log(group);
-  // const { name, color, id } = group;
+
   return (
     <div>
       <Box
@@ -106,4 +105,4 @@ const GroupDetail = ({ group }) => {
   );
 };
 
-export default GroupDetail;
+export default GroupDetailPage;

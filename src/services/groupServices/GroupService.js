@@ -1,4 +1,4 @@
-import { GroupInstance } from "src/services/GroupsInstance";
+import { GroupInstance } from "src/services/groupServices/GroupsInstance";
 
 export const get = () => {
   let groups = GroupInstance.get();

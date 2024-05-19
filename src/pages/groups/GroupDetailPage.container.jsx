@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import GroupDetail from "src/components/pages/groups/GroupDetail";
-import { getById } from "src/services/GroupService";
+import GroupDetailPage from "src/pages/groups/GroupDetailPage";
+import { getById } from "src/services/groupServices/GroupService";
 import { useParams } from "react-router-dom";
 
-const GroupDetailContainer = () => {
+const GroupDetailPageContainer = () => {
   const id = useParams().id;
 
   const [group, setGroup] = useState(null);
@@ -41,9 +41,9 @@ const GroupDetailContainer = () => {
 
   return (
     <div>
-      <GroupDetail group={group} />
+      <GroupDetailPage group={group} />
     </div>
   );
 };
 
-export default GroupDetailContainer;
+export default GroupDetailPageContainer;
