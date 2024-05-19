@@ -15,5 +15,6 @@ export const deleteById = (id) => {
 };
 
 export const create = (data) => {
+  console.log("data enviada:", data);
   return UserInstance.post("/", data);
 };

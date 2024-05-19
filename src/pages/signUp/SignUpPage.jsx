@@ -81,14 +81,18 @@ const SignUpPage = ({
                   style={{ marginBottom: "20px" }}
                   sx={{
                     "& .MuiInputLabel-root": {
-                      color: "white", // Change label font color to white
+                      color: "white",
                     },
                     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
                       {
-                        borderColor: "white", // Change the outline color to white
+                        borderColor: "white",
+                      },
+                    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                      {
+                        borderColor: "white", // Change the outline color to white when focused
                       },
                     "& .MuiOutlinedInput-input": {
-                      color: "white", // Change input text color to white
+                      color: "white",
                     },
                   }}
                 />
@@ -100,14 +104,18 @@ const SignUpPage = ({
                   style={{ marginBottom: "20px" }}
                   sx={{
                     "& .MuiInputLabel-root": {
-                      color: "white", // Change label font color to white
+                      color: "white",
                     },
                     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
                       {
-                        borderColor: "white", // Change the outline color to white
+                        borderColor: "white",
+                      },
+                    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                      {
+                        borderColor: "white", // Change the outline color to white when focused
                       },
                     "& .MuiOutlinedInput-input": {
-                      color: "white", // Change input text color to white
+                      color: "white",
                     },
                   }}
                 />
@@ -138,14 +146,18 @@ const SignUpPage = ({
                   }}
                   sx={{
                     "& .MuiInputLabel-root": {
-                      color: "white", // Change label font color to white
+                      color: "white",
                     },
                     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
                       {
-                        borderColor: "white", // Change the outline color to white
+                        borderColor: "white",
+                      },
+                    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                      {
+                        borderColor: "white", // Change the outline color to white when focused
                       },
                     "& .MuiOutlinedInput-input": {
-                      color: "white", // Change input text color to white
+                      color: "white",
                     },
                   }}
                 />
