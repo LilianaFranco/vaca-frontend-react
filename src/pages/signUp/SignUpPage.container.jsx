@@ -35,7 +35,7 @@ const SignUpPageContainer = () => {
     createUser
       .then((res) => {
         console.log(res);
-        navigate("/login");
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);
