@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import GroupCard from "src/components/common/GroupCard";
 import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import {
   Box,
   Button,
@@ -20,6 +20,9 @@ const GroupsPage = ({
   onGroupsRefresh,
   snackbarOpen,
   setSnackbarOpen,
+  snackbarMessage,
+  snackbarSeverity,
+  deleteGroup,
 }) => {
   console.log(snackbarOpen);
   const [open, setOpen] = useState(false);
@@ -106,15 +109,16 @@ const GroupsPage = ({
                     <Button
                       size="small"
                       variant="contained"
-                      startIcon={<EditIcon />}
+                      startIcon={<RemoveRedEyeIcon />}
                       onClick={() => handleCardClick(group)}
                     >
-                      Editar
+                      Ver
                     </Button>
                     <Button
                       size="small"
                       variant="contained"
                       startIcon={<DeleteIcon />}
+                      onClick={() => deleteGroup(group.id)}
                     >
                       Eliminar
                     </Button>
@@ -132,11 +136,11 @@ const GroupsPage = ({
         >
           <Alert
             onClose={handleSnackbarClose}
-            severity="success"
+            severity={snackbarSeverity}
             variant="filled"
             sx={{ width: "100%" }}
           >
-            Grupo creado exitosamente!
+            {snackbarMessage}
           </Alert>
         </Snackbar>
       </Box>

@@ -9,9 +9,7 @@ import ExpensesCard from "src/components/common/ExpensesCard";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 const GroupDetailPage = ({ group }) => {
-  const handleCardClick = () => {
-    console.log("Me fui del grupo");
-  };
+  const handleCardClick = () => {};
 
   return (
     <div>

@@ -1,19 +1,19 @@
 import { GroupInstance } from "src/services/groupServices/GroupsInstance";
 
-export const get = () => {
+export const get = async () => {
   let groups = GroupInstance.get();
   return groups;
 };
 
-export const getById = (id) => {
-  let group = GroupInstance.get(`/${id}`);
+export const getById = async (id) => {
+  let group = await GroupInstance.get(`/${id}`);
   return group;
 };
 
-export const deleteById = (id) => {
-  return GroupInstance.delete(`/${id}`);
+export const deleteById = async (id) => {
+  return await GroupInstance.delete(`/${id}`);
 };
 
-export const create = (data) => {
-  return GroupInstance.post("/", data);
+export const create = async (data) => {
+  return await GroupInstance.post("/", data);
 };

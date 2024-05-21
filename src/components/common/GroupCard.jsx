@@ -37,7 +37,8 @@ const GroupCard = ({ group, actions }) => {
           {group.name}
         </Typography>
         <Typography variant="body1">
-          {group.balanceStatus}: ${group.balanceValue} COP
+          {group.balanceValue ? group.balanceValue : "Debes"}: $
+          {group.balanceValue ? group.balanceValue : "0"} COP
         </Typography>
         <CardActions
           sx={{ justifyContent: "space-between", padding: "10px 0px" }}

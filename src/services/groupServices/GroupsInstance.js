@@ -4,6 +4,6 @@ export const GroupInstance = axios.create({
   baseURL: "http://localhost:3001/groups",
   headers: {
     Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-    "Content-Type": "aplication json",
+    "Content-Type": "application json",
   },
 });
