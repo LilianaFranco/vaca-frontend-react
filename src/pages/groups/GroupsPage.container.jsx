@@ -8,9 +8,15 @@ import {
 
 const GroupsPageContainer = () => {
   const [groups, setGroups] = useState([]);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState("");
-  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+  // const [snackbarOpen, setSnackbarOpen] = useState(false);
+  // const [snackbarMessage, setSnackbarMessage] = useState("");
+  // const [snackbarSeverity, setSnackbarSeverity] = useState("");
+
+  const [snackbarConfig, setSnackbarConfig] = useState({
+    message: "",
+    severity: "",
+    open: false,
+  });
 
   const getGroups = () => {
     const groups = get();
@@ -38,22 +44,28 @@ const GroupsPageContainer = () => {
       .then(() => {
         deleteById(id)
           .then(() => {
-            setSnackbarMessage("Grupo eliminado exitosamente");
-            setSnackbarSeverity("success");
-            setSnackbarOpen(true);
+            setSnackbarConfig({
+              message: "Grupo eliminado exitosamente",
+              open: true,
+              severity: "success",
+            });
             getGroups();
           })
           .catch((err) => {
-            setSnackbarMessage("Error eliminando el grupo");
-            setSnackbarSeverity("error");
-            setSnackbarOpen(true);
+            setSnackbarConfig({
+              message: "Error eliminando el grupo",
+              open: true,
+              severity: "error",
+            });
             console.error(err);
           });
       })
       .catch((err) => {
-        setSnackbarMessage("Grupo no encontrado");
-        setSnackbarSeverity("error");
-        setSnackbarOpen(true);
+        setSnackbarConfig({
+          message: "Grupo no encontrado",
+          open: true,
+          severity: "error",
+        });
         console.error(err);
       });
   };
@@ -72,10 +84,8 @@ const GroupsPageContainer = () => {
         groups={groups}
         deleteGroup={deleteGroup}
         onGroupsRefresh={onGroupsRefresh}
-        snackbarOpen={snackbarOpen}
-        setSnackbarOpen={setSnackbarOpen}
-        snackbarMessage={snackbarMessage}
-        snackbarSeverity={snackbarSeverity}
+        snackbarConfig={snackbarConfig}
+        setSnackbarConfig={setSnackbarConfig}
       />
     </div>
   );

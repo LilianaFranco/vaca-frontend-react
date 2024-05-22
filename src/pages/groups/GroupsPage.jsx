@@ -18,13 +18,10 @@ import { useNavigate } from "react-router-dom";
 const GroupsPage = ({
   groups,
   onGroupsRefresh,
-  snackbarOpen,
-  setSnackbarOpen,
-  snackbarMessage,
-  snackbarSeverity,
+  setSnackbarConfig,
+  snackbarConfig,
   deleteGroup,
 }) => {
-  console.log(snackbarOpen);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -38,7 +35,11 @@ const GroupsPage = ({
   };
 
   const handleSnackbarClose = () => {
-    setSnackbarOpen(false);
+    setSnackbarConfig({
+      message: "",
+      open: false,
+      severity: "",
+    });
   };
 
   const navigate = useNavigate();
@@ -84,8 +85,7 @@ const GroupsPage = ({
           <NewGroupModal
             open={open}
             handleClose={handleClose}
-            setSnackbarOpen={setSnackbarOpen}
-            snackbarOpen={snackbarOpen}
+            setSnackbarConfig={setSnackbarConfig}
           />
         )}
 
@@ -129,18 +129,18 @@ const GroupsPage = ({
           ))}
         </Box>
         <Snackbar
-          open={snackbarOpen}
+          open={snackbarConfig.open}
           autoHideDuration={6000}
           onClose={handleSnackbarClose}
           anchorOrigin={{ vertical: "top", horizontal: "right" }}
         >
           <Alert
             onClose={handleSnackbarClose}
-            severity={snackbarSeverity}
+            severity={snackbarConfig.severity}
             variant="filled"
             sx={{ width: "100%" }}
           >
-            {snackbarMessage}
+            {snackbarConfig.message}
           </Alert>
         </Snackbar>
       </Box>

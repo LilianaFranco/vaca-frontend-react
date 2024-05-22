@@ -11,12 +11,7 @@ import {
 import ColorPicker from "../../components/common/ColorPicker";
 import { Alert } from "@mui/material";
 
-const NewGroupModal = ({
-  open,
-  handleClose,
-  setSnackbarOpen,
-  snackbarOpen,
-}) => {
+const NewGroupModal = ({ open, handleClose, setSnackbarConfig }) => {
   const [newGroup, setNewGroup] = useState({
     id: "",
     name: "",
@@ -66,7 +61,11 @@ const NewGroupModal = ({
     createGroup
       .then((res) => {
         handleClose();
-        setSnackbarOpen(true);
+        setSnackbarConfig({
+          message: "El grupo fue creado exitosamente",
+          open: true,
+          severity: "success",
+        });
       })
       .catch((err) => {
         console.log(err);
