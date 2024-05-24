@@ -24,24 +24,23 @@ const LogInPageContainer = () => {
     setUser({ ...user, [property]: e.target.value });
   };
 
-  const handleAuthUser = (user) => {
+  const handleAuthUser = async (user) => {
     const data = {
       email: user.email.trim(),
       password: user.password,
     };
-    const authUser = login(data);
-    authUser
-      .then((res) => {
-        sessionStorage.setItem("token", res.data.token);
-        window.dispatchEvent(new Event("storage")); //para hacerle un triger al storage y poder ver el navbar. El hook se ejecuta antes de nuestra protección.
-        navigate("/groups", { replace: true });
-      })
-      .catch((err) => {
-        console.log(err);
-        if (err.response && err.response.status === 409) {
-          setErrorMessage("Algoo.");
-        }
-      });
+
+    try {
+      const res = await login(data);
+      sessionStorage.setItem("token", res.data.token);
+      window.dispatchEvent(new Event("storage")); //para hacerle un triger al storage y poder ver el navbar. El hook se ejecuta antes de nuestra protección.
+      navigate("/groups", { replace: true });
+    } catch (err) {
+      console.log(err);
+      if (err.response && err.response.status === 409) {
+        setErrorMessage("Algoo.");
+      }
+    }
   };
   const handleSubmit = async (e) => {
     e.preventDefault();

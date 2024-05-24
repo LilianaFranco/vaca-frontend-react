@@ -1,5 +1,5 @@
 import { LogInInstance } from "./loginInstance";
 
-export const login = (data) => {
+export const login = async (data) => {
   return LogInInstance.post("/", data);
 };
