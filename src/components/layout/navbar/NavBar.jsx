@@ -15,8 +15,6 @@ import useAuth from "src/hooks/useAuth";
 
 import { Link } from "react-router-dom";
 
-const settings = ["Profile", "Account", "Logout"];
-
 function MenuLinks() {
   return (
     <React.Fragment>
@@ -49,6 +47,14 @@ function NavBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const onLogout = () => {
+    sessionStorage.removeItem("token");
+    window.dispatchEvent(new Event("storage")); //para hacerle un triger al storage y poder ver el navbar. El hook se ejecuta antes de nuestra protección.
+    navigate("/", { replace: true });
+    handleCloseUserMenu();
+  };
+
   if (!isAuthenticated) {
     return null;
   }
@@ -83,7 +89,7 @@ function NavBar() {
 
             {/* Profile menu for settings in Mobile and Web*/}
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
+              <Tooltip title="logout">
                 <IconButton onClick={handleOpenUserMenu}>
                   <Avatar alt="" src="" />
                 </IconButton>
@@ -104,11 +110,9 @@ function NavBar() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
+                <MenuItem onClick={onLogout}>
+                  <Typography textAlign="center">Logout</Typography>
+                </MenuItem>
               </Menu>
             </Box>
           </React.Fragment>

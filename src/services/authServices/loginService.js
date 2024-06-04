@@ -10,5 +10,5 @@ const axiosConnection = () =>
   });
 
 export const login = async (data) => {
-  return axiosConnection().post("/", data);
+  return axiosConnection().post("", data);
 };
