@@ -35,7 +35,9 @@ const SignUpPageContainer = () => {
     createUser
       .then((res) => {
         console.log(res);
-        navigate("/");
+        sessionStorage.setItem("token", res.data.token);
+        window.dispatchEvent(new Event("storage")); //para hacerle un triger al storage y poder ver el navbar. El hook se ejecuta antes de nuestra protección.
+        navigate("/groups", { replace: true });
       })
       .catch((err) => {
         console.log(err);
