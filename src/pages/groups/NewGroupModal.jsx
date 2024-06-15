@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import ColorPicker from "../../components/common/ColorPicker";
 import { Alert } from "@mui/material";
+import { newGroupSchemaValidation } from "../../validations/groups.schema.validations";
 
 const NewGroupModal = ({ open, handleClose, setSnackbarConfig }) => {
   const [newGroup, setNewGroup] = useState({
@@ -36,11 +37,14 @@ const NewGroupModal = ({ open, handleClose, setSnackbarConfig }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const { error } = newGroupSchemaValidation.validate(newGroup, {
+      abortEarly: false,
+      stripUnknown: true,
+    });
 
-    if (newGroup.name.length === 0) {
-      setErrorMessage("Elige un nombre para continuar");
-    } else if (newGroup.name.length > 30) {
-      setErrorMessage("El nombre no puede tener más de 30 caracteres");
+    if (error) {
+      setErrorMessage(error.details[0].message);
+      return;
     } else {
       handleCreateGroup();
       setErrorMessage("");

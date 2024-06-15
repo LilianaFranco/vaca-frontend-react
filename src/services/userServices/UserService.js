@@ -25,5 +25,5 @@ export const deleteById = (id) => {
 
 export const create = (data) => {
   console.log("data enviada:", data);
-  return axiosConnection().post("/", data);
+  return axiosConnection().post("", data);
 };
