@@ -66,8 +66,6 @@ function NavBar() {
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="/"
             sx={{
               ml: 2,
               display: { xs: "flex", md: "flex" },
