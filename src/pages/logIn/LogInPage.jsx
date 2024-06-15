@@ -111,6 +111,17 @@ const LogInPage = ({
                   value={user.email}
                   onChange={(e) => handleChange(e, "email")}
                   style={{ marginBottom: "20px" }}
+                  InputLabelProps={{
+                    sx: {
+                      color: "white",
+                      "&.Mui-focused": {
+                        color: "white",
+                      },
+                      "&.MuiFormLabel-filled": {
+                        color: "white",
+                      },
+                    },
+                  }}
                   sx={{
                     "& .MuiInputLabel-root": {
                       color: "white",
@@ -152,6 +163,17 @@ const LogInPage = ({
                         </IconButton>
                       </InputAdornment>
                     ),
+                  }}
+                  InputLabelProps={{
+                    sx: {
+                      color: "white",
+                      "&.Mui-focused": {
+                        color: "white",
+                      },
+                      "&.MuiFormLabel-filled": {
+                        color: "white",
+                      },
+                    },
                   }}
                   sx={{
                     "& .MuiInputLabel-root": {

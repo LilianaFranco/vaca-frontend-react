@@ -79,10 +79,18 @@ const SignUpPage = ({
                   value={user.name}
                   onChange={(e) => handleChange(e, "name")}
                   style={{ marginBottom: "20px" }}
-                  sx={{
-                    "& .MuiInputLabel-root": {
+                  InputLabelProps={{
+                    sx: {
                       color: "white",
+                      "&.Mui-focused": {
+                        color: "white",
+                      },
+                      "&.MuiFormLabel-filled": {
+                        color: "white",
+                      },
                     },
+                  }}
+                  sx={{
                     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
                       {
                         borderColor: "white",
@@ -102,6 +110,17 @@ const SignUpPage = ({
                   value={user.email}
                   onChange={(e) => handleChange(e, "email")}
                   style={{ marginBottom: "20px" }}
+                  InputLabelProps={{
+                    sx: {
+                      color: "white",
+                      "&.Mui-focused": {
+                        color: "white",
+                      },
+                      "&.MuiFormLabel-filled": {
+                        color: "white",
+                      },
+                    },
+                  }}
                   sx={{
                     "& .MuiInputLabel-root": {
                       color: "white",
@@ -143,6 +162,17 @@ const SignUpPage = ({
                         </IconButton>
                       </InputAdornment>
                     ),
+                  }}
+                  InputLabelProps={{
+                    sx: {
+                      color: "white",
+                      "&.Mui-focused": {
+                        color: "white",
+                      },
+                      "&.MuiFormLabel-filled": {
+                        color: "white",
+                      },
+                    },
                   }}
                   sx={{
                     "& .MuiInputLabel-root": {
