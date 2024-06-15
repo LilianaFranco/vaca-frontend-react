@@ -67,7 +67,7 @@ const SignUpPage = ({
           >
             Registrarme
           </h2>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} noValidate>
             <Box>
               <FormControl
                 variant="outlined"
@@ -162,7 +162,10 @@ const SignUpPage = ({
                   }}
                 />
                 {!!errorMessage && (
-                  <Alert severity="error" sx={{ marginTop: "20px" }}>
+                  <Alert
+                    severity="error"
+                    sx={{ marginTop: "10px", marginBottom: "20px" }}
+                  >
                     {errorMessage}
                   </Alert>
                 )}

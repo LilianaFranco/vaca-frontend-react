@@ -2,6 +2,7 @@ import { useState } from "react";
 import SignUpPage from "./SignUpPage";
 import { create } from "src/services/userServices/UserService";
 import { useNavigate } from "react-router-dom";
+import { newUserSchemaValidation } from "../../validations/newUser.schema.validation";
 
 const SignUpPageContainer = () => {
   const navigate = useNavigate();
@@ -9,7 +10,6 @@ const SignUpPageContainer = () => {
     name: "",
     email: "",
     password: "",
-    createdAt: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -47,11 +47,14 @@ const SignUpPageContainer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const { error, value } = newUserSchemaValidation.validate(user, {
+      abortEarly: false,
+      stripUnknown: true,
+    });
 
-    if (user.name.length === 0) {
-      setErrorMessage("Elige un nombre para continuar");
-    } else if (user.email.length === 0) {
-      setErrorMessage("Elige un correo para continuar");
+    if (error) {
+      setErrorMessage(error.details[0].message);
+      return;
     } else {
       try {
         handleCreateUser(user);
